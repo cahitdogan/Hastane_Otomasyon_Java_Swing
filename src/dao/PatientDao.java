@@ -82,7 +82,7 @@ public class PatientDao {
     private static Patient match(ResultSet rs) throws SQLException {
         Patient patient = new Patient();
         patient.setId(rs.getInt("id"));
-        patient.setTc(rs.getInt("tc"));
+        patient.setTc(rs.getString("tc"));
         patient.setName(rs.getString("name"));
         patient.setPhone(rs.getString("phone"));
         patient.setMail(rs.getString("mail"));

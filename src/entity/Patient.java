@@ -2,14 +2,21 @@ package entity;
 
 public class Patient {
     private int id;
-    private long tc;
+    private String tc;
     private String name;
     private String phone;
     private String address;
     private String mail;
     private String password;
 
-    public Patient() {
+    public Patient() {}
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {
@@ -20,11 +27,11 @@ public class Patient {
         this.id = id;
     }
 
-    public long getTc() {
+    public String getTc() {
         return tc;
     }
 
-    public void setTc(long tc) {
+    public void setTc(String tc) {
         this.tc = tc;
     }
 

@@ -1,4 +1,7 @@
 package view;
+import dao.DoctorDao;
+import entity.Doctor;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,6 +29,18 @@ public class DoctorLoginUI extends JFrame {
         this.btn_login.addActionListener(e -> {
             if (this.fld_username.getText().isEmpty() || this.fld_password.getPassword().length == 0) {
                 JOptionPane.showMessageDialog(null, "Tüm alanları doldurunuz!", "HATA", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                String username = fld_username.getText();
+                char[] passwordArray = fld_password.getPassword();
+                String password = new String(passwordArray);
+                DoctorDao doctorDao = new DoctorDao();
+                Doctor doctor = doctorDao.findDoctorByLogin(username, password);
+
+                if (doctor == null) {
+                    JOptionPane.showMessageDialog(null, "Böyle bir kullanıcı bulunamadı!", "HATA", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Giriş başarılı!", "HATA", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
     }

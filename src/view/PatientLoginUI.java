@@ -4,9 +4,6 @@ import entity.Patient;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class PatientLoginUI extends JFrame {
     private JPanel pnl_title;
@@ -40,7 +37,9 @@ public class PatientLoginUI extends JFrame {
                 if (patient == null) {
                     JOptionPane.showMessageDialog(null, "Böyle bir kullanıcı bulunamadı.", "HATA", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Giriş başarılı!", "HATA", JOptionPane.INFORMATION_MESSAGE);
+                    PatientPanel patientEnter = new PatientPanel(patient);
+                    patientEnter.setVisible(true);
+                    this.setVisible(false);
                 }
             }
         });

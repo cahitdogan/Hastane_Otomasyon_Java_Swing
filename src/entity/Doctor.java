@@ -2,30 +2,32 @@ package entity;
 
 public class Doctor {
     private int id;
-    private long tc;
+    private String tc;
     private String name;
     private String phone;
-
-    public Doctor(int id, long tc, String name, String phone) {
-        this.id = id;
-        this.tc = tc;
-        this.name = name;
-        this.phone = phone;
-    }
+    private String username;
 
     public int getId() {
         return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public long getTc() {
+    public String getTc() {
         return tc;
     }
 
-    public void setTc(long tc) {
+    public void setTc(String tc) {
         this.tc = tc;
     }
 
@@ -36,6 +38,7 @@ public class Doctor {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getPhone() {
         return phone;
@@ -52,6 +55,7 @@ public class Doctor {
                 ", tc=" + tc +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }
