@@ -9,6 +9,9 @@ public class Appointment {
     private int day;
     private String hour;
     private String patientTc;
+    private String status;
+    private int doctorId;
+    private int patientId;
 
     public int getId() {
         return id;
@@ -86,5 +89,29 @@ public class Appointment {
                 ", hour='" + hour + '\'' +
                 ", patientTc='" + patientTc + '\'' +
                 '}';
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 }
