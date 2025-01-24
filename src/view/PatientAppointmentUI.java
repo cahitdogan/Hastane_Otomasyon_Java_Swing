@@ -33,7 +33,10 @@ public class PatientAppointmentUI extends JFrame {
     private JLabel lbl_day;
     private JLabel lbl_month;
 
-    public PatientAppointmentUI(Patient patient) {
+    private PatientPanel patientPanel;
+
+    public PatientAppointmentUI(Patient patient, PatientPanel patientPanel) {
+        this.patientPanel = patientPanel;
         createUIComponents();
 
         container = new JPanel();
@@ -98,10 +101,18 @@ public class PatientAppointmentUI extends JFrame {
             AppointmentDao appointmentDao = new AppointmentDao();
             if (appointmentDao.createAppointment(appointment)) {
                 JOptionPane.showMessageDialog(null, "Randevu başarıyla kaydedildi!", "Başarılı", JOptionPane.INFORMATION_MESSAGE);
+                refreshAppointmentsTable();
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Randevu kaydedilirken hata oluştu!", "HATA", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+    }
+
+    private void refreshAppointmentsTable() {
+        if (patientPanel != null) {
+            patientPanel.refreshAppointmentsTable();
+        }
     }
 
     private void createUIComponents() {
