@@ -54,6 +54,24 @@ public class DoctorDao {
         return doctors;
     };
 
+    public ArrayList<Doctor> getDoctorsByBranch(int branch_id) {
+        try {
+            ArrayList<Doctor> doctors = new ArrayList<>();
+            String query = "SELECT * FROM doctors WHERE branchID=?";
+            ResultSet rs = null;
+            PreparedStatement pr = this.connection.prepareStatement(query);
+            pr.setInt(1, branch_id);
+            rs = pr.executeQuery();
+            while (rs.next()) {
+                doctors.add(match(rs));
+            }
+            System.out.println(doctors);
+            return doctors;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static Doctor match(ResultSet rs) throws SQLException {
         Doctor doctor = new Doctor();
         doctor.setId(rs.getInt("id"));
