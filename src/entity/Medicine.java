@@ -3,8 +3,8 @@ package entity;
 public class Medicine {
     private int id;
     private String name;
-    private String stock;
-    private float dosage;
+    private int stock;
+    private int dosage;
 
     public int getId() {
         return id;
@@ -22,19 +22,19 @@ public class Medicine {
         this.name = name;
     }
 
-    public String getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
-    public float getDosage() {
+    public int getDosage() {
         return dosage;
     }
 
-    public void setDosage(float dosage) {
+    public void setDosage(int dosage) {
         this.dosage = dosage;
     }
 
