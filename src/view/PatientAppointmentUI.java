@@ -4,6 +4,7 @@ import dao.AppointmentDao;
 import dao.BranchDao;
 import dao.DoctorDao;
 import entity.Appointment;
+import entity.Doctor;
 import entity.Patient;
 
 import javax.swing.*;
@@ -75,15 +76,31 @@ public class PatientAppointmentUI extends JFrame {
         btn_save.addActionListener(e -> {
             Appointment appointment = new Appointment();
             appointment.setPatientName(patient.getName());
-            appointment.setPatientTc(patient.getTc());
-            appointment.setBranch(cbox_branch.getSelectedItem().toString());
             appointment.setDoctorName(this.cbox_doctor.getSelectedItem().toString());
-            appointment.setHour(this.cbox_hour.getSelectedItem().toString());
-            appointment.setDay(Integer.parseInt(this.cbox_day.getSelectedItem().toString()));
+            appointment.setPatientTc(patient.getTc());
             appointment.setMonth(this.cbox_month.getSelectedItem().toString());
+            appointment.setDay(Integer.parseInt(this.cbox_day.getSelectedItem().toString()));
+            appointment.setHour(this.cbox_hour.getSelectedItem().toString());
+            appointment.setBranch(cbox_branch.getSelectedItem().toString());
+            appointment.setStatus("active");
+            appointment.setPatientId(patient.getId());
+
+            DoctorDao doctorDao = new DoctorDao();
+            int branch = cbox_branch.getSelectedIndex() + 1;
+            ArrayList<Doctor> doctors = doctorDao.getDoctorsByBranch(branch);
+
+            for (int i = 0; i < doctors.size(); i++) {
+                if (doctors.get(i).getName().equals(cbox_doctor.getSelectedItem())) {
+                    appointment.setDoctorId(doctors.get(i).getId());
+                }
+            }
 
             AppointmentDao appointmentDao = new AppointmentDao();
-
+            if (appointmentDao.createAppointment(appointment)) {
+                JOptionPane.showMessageDialog(null, "Randevu başarıyla kaydedildi!", "Başarılı", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Randevu kaydedilirken hata oluştu!", "HATA", JOptionPane.INFORMATION_MESSAGE);
+            }
         });
     }
 
