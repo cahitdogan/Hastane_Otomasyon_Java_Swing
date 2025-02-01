@@ -4,6 +4,8 @@ import entity.Doctor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DoctorLoginUI extends JFrame {
 
@@ -39,7 +41,9 @@ public class DoctorLoginUI extends JFrame {
                 if (doctor == null) {
                     JOptionPane.showMessageDialog(null, "Böyle bir kullanıcı bulunamadı!", "HATA", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Giriş başarılı!", "HATA", JOptionPane.INFORMATION_MESSAGE);
+                    DoctorPanel panel = new DoctorPanel(doctor);
+                    panel.setVisible(true);
+                    this.setVisible(false);
                 }
             }
         });
