@@ -79,6 +79,24 @@ public class PatientDao {
         }
     }
 
+    public Patient getPatientByTc (String tc) {
+        Patient patient = null;
+        String query = "SELECT * FROM patients WHERE tc = ?";
+        PreparedStatement pr = null;
+        try {
+            pr = this.connection.prepareStatement(query);
+            pr.setString(1, tc);
+            ResultSet rs = pr.executeQuery();
+            while(rs.next()) {
+             patient = match(rs);   
+            }
+            return patient;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     private static Patient match(ResultSet rs) throws SQLException {
         Patient patient = new Patient();
         patient.setId(rs.getInt("id"));
