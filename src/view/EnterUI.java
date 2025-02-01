@@ -9,6 +9,7 @@ public class EnterUI extends JFrame {
     private JPanel container;
     private JButton btn_patient_login_ui;
     private JButton btn_doctor_login_ui;
+    private JButton btn_secretary_login_ui;
 
     public EnterUI() {
         this.add(container);
@@ -30,6 +31,12 @@ public class EnterUI extends JFrame {
             SwingUtilities.invokeLater(() -> {
                 DoctorLoginUI doctorLoginUI = new DoctorLoginUI();
                 doctorLoginUI.setVisible(true);
+            });
+        });
+        btn_secretary_login_ui.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                SecretaryLoginUI secretaryLoginUI = new SecretaryLoginUI();
+                secretaryLoginUI.setVisible(true);
             });
         });
     }
