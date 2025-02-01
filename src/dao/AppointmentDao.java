@@ -54,6 +54,22 @@ public class AppointmentDao {
         }
     };
 
+    public ArrayList<Appointment> getAppointmentsByDoctor(int DoctorId) {
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        String query = "SELECT * FROM appointments WHERE doctor_id = ?";
+        try {
+            PreparedStatement pr = this.connection.prepareStatement(query);
+            pr.setInt(1, DoctorId);
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                appointments.add(match(rs));
+            }
+            return appointments;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static Appointment match(ResultSet rs) throws SQLException {
         Appointment appointment = new Appointment();
         appointment.setDoctorId(rs.getInt("id"));
